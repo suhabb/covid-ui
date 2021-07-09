@@ -1,0 +1,43 @@
+#world-view {
+    height: 500px;
+    /* background-color: green; */
+} 
+
+.country1 {
+    stroke: #fff;
+    fill:#005DAA;
+  } 
+
+.hidden {
+    display: none;
+}
+
+div.tooltip {
+    color: #222; 
+    background: #fff; 
+    border-radius: 3px; 
+    box-shadow: 0px 0px 2px 0px #a6a6a6; 
+    padding: .2em; 
+    text-shadow: #f5f5f5 0 1px 0;
+    opacity: 0.9; 
+    position: absolute;
+}
+svg1 {
+    
+    position: center;
+    background-color: #FFF;
+}
+
+.sphere {
+    fill: #4242e4;
+  }
+  
+  .country {
+    fill: rgba(38,50,56,0.4632768361581921);
+    stroke: #FFF;
+    stroke-width: 0.10px;
+  }
+  
+  .country:hover {
+    fill:  rgb(33, 113, 181);
+  }

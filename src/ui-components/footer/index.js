@@ -6,9 +6,9 @@ const { Footer } = Layout;
 
 function FooterView() {
     return (
-        <div>
+        <React.Fragment>
            <Footer style={{ textAlign: 'center' }}>Kcl Covid App</Footer>
-        </div>
+        </React.Fragment>
     )
 };
 
