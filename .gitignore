@@ -116,3 +116,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+src/ui-components/.DS_Store
+.DS_Store

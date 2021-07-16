@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
-import BarChart from '../../d3_graph/bar_chart';
+import BarChart from '../../d3_graph/vaccination/bar_chart';
 import './bar-view.css';
+import data from '../../data/pie-data'
 
 export default class BarChartView extends Component {
+
+    state = {
+        manufacturerData: this.props.manufacturerData
+    }
+
     render() {
-        const {data} = this.props;
+        let { manufacturerData } = this.props;
+        if(manufacturerData === undefined || (Object.keys(manufacturerData).length === 0)){
+            manufacturerData = data
+        }
+        console.log(manufacturerData)
         return (
             <div id='bar-view' className='pane'>
-                <div className='header'>Age</div>
+                <div className='header'>Bar Chart : {manufacturerData.location}</div>
                 <div style={{ overflowX: 'scroll',overflowY:'hidden' }}>
-                <BarChart data={data} width={1000} height={550}/>
+                <BarChart data={manufacturerData} width={800} height={450}/>
                 </div>                
             </div>
         )

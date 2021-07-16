@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './info.css';
 import Flag from 'react-world-flags'
-import data from '../../data'
+import data from '../../../data'
 
 export default class Info extends Component {
 
@@ -10,7 +10,7 @@ export default class Info extends Component {
     }
 
 
-
+   
     render() {
 
         let { countryData } = this.props;
@@ -22,7 +22,17 @@ export default class Info extends Component {
         const lastItem= countryData.data.slice(-1)[0]
         console.log("last item",lastItem)
       
-        
+        const numFormatter = (num)=> {
+            if(num > 999 && num < 1000000){
+                return (num/1000).toFixed(0) + 'K'; // convert to K for number from > 1000 < 1 million 
+            }else if(num > 1000000){
+                return (num/1000000).toFixed(0) + 'M'; // convert to M for number from > 1 million 
+            }else if(num < 900){
+                return num; // if value < 1000, nothing to do
+            }
+        }
+    
+
         return (
             <div id='info' className='pane'>
                 <div className='header'>Country</div>
@@ -30,10 +40,11 @@ export default class Info extends Component {
                 <div>
                     
                     <div className={'info-view'} >
+                        <div><span>Date :</span> {lastItem.date}</div>
                         <div><span>Country:</span> {countryData.country}</div>
-                        <div><span>Daily Vaccinations:</span>{lastItem.daily_vaccinations}</div>
-                        <div><span>Vaccinated:</span> {lastItem.people_vaccinated}</div>
-                        <div><span>People Fully Vaccinated:</span> {lastItem.people_fully_vaccinated}</div>
+                        <div><span>Daily Vaccinations:</span>{numFormatter(lastItem.daily_vaccinations)}</div>
+                        <div><span>Total Vaccinated:</span> {numFormatter(lastItem.total_vaccinations)}</div>
+                        <div><span>People Fully Vaccinated:</span> {numFormatter(lastItem.people_fully_vaccinated)}</div>
                     </div>
                 </div>
             </div>

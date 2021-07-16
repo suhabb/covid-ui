@@ -15,7 +15,8 @@ export default class WorldView extends React.Component {
 
     state = {
         geographies: [],
-        vaccineSummary: {}
+        vaccineSummary: {},
+        manufacturerSummary :{}
     }
 
     componentDidMount() {
@@ -48,10 +49,14 @@ export default class WorldView extends React.Component {
             vaccineResponse.then(vaccine => {
                 console.log("Vaccine data", vaccine.data)
                 this.setState({ vaccineSummary: vaccine.data })
-                this.props.parentCallback(vaccine.data);
+                const manufacturerResponse = this.manufacturerRequest(iso)
+                manufacturerResponse.then(manufacturer => {
+                    console.log("Manufacturer data", manufacturer.data)
+                    this.setState({ manufacturerSummary: manufacturer.data })
+                    this.props.parentCallback(vaccine.data,manufacturer.data);
+                });
             });
         });
-     
     }
 
     vaccineRequest = (iso) => {
@@ -64,11 +69,22 @@ export default class WorldView extends React.Component {
         }
     }
 
+    manufacturerRequest = (iso) => {
+        try {
+            const manufacturerUrl = 'http://localhost:8080/covid-vaccination-service/manufacturer/iso-code/' + iso
+            console.log(manufacturerUrl)
+            return axios.get(manufacturerUrl);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
 
     render() {
         return (
             <div>
-                <svg width={800} height={450} viewBox="0 0 800 450">
+                <div className='header'>World Map</div>
+                <svg width={800} height={350} viewBox="0 0 800 450">
                     <g className="world-view">
                         {
                             this.state.geographies.map((d, i) => (
@@ -86,9 +102,6 @@ export default class WorldView extends React.Component {
                         }
                     </g>
                 </svg>
-                <div>
-                    Vaccine1:{this.state.vaccineSummary.country}
-                </div>
             </div>
         )
     }
