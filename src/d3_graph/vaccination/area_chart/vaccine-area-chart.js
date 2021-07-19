@@ -18,7 +18,7 @@ const AreaView = (props) => {
         dataset.push(vaccineData);
     });
     dataset.forEach(function (d) {
-        d.date = d3.timeParse("%Y-%m-%d")(d.vaccine_date);
+        d.date = d3.timeParse('%Y-%m-%d')(d.vaccine_date);
     });
     console.log('Dataset', dataset);
     d3.select('.vaccine-areachart  > *').remove();
@@ -27,35 +27,44 @@ const AreaView = (props) => {
     const graphWidth = props.width - margin.left - margin.right;;
     const graphHeight = props.height - margin.top - margin.bottom;
 
-    let svg = d3.select(".vaccine-areachart")
-        .append("svg")
-        .attr("width", graphWidth + margin.left + margin.right)
-        .attr("height", graphHeight + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
+    let svg = d3.select('.vaccine-areachart')
+        .append('svg')
+        .attr('width', graphWidth + margin.left + margin.right)
+        .attr('height', graphHeight + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform',
+            'translate(' + margin.left + ',' + margin.top + ')');
 
     dataset.forEach(function (d) {
-        d.vaccine_date = d3.timeParse("%Y-%m-%d")(d.vaccine_date);
+        d.vaccine_date = d3.timeParse('%Y-%m-%d')(d.vaccine_date);
     });
 
+
     // Add X axis --> it is a date format
+    
+
     let x = d3.scaleTime()
-        .domain(d3.extent(dataset, function (d) { return d.vaccine_date; }))
+        .domain(d3.extent(dataset,  d => d.vaccine_date ))
         .range([0, graphWidth]);
-    svg.append("g")
-        .attr("transform", "translate(0," + graphHeight + ")")
-        .call(d3.axisBottom(x));
+
+    const xAxis = d3.axisBottom(x)
+                .ticks(6)
+                .tickFormat(d3.timeFormat('%b %d'));
+
+    svg.append('g')
+        .attr('transform', `translate(0,${graphHeight})`)
+        .call(xAxis);
 
     // Add Y axis
     var y = d3.scaleLinear()
-        .domain([0, d3.max(dataset, function (d) { return d.daily_vaccinations; })])
+        .domain([0, d3.max(dataset, d => d.daily_vaccinations )])
         .range([graphHeight, 0]);
-    svg.append("g")
-        .call(d3.axisLeft(y)
-        .tickFormat(d => {
-            return numFormatter(d);
-        }))
+    const yAxis = d3.axisLeft(y)
+                .tickFormat(d => {
+                    return numFormatter(d);
+                });
+    svg.append('g')
+        .call(yAxis)
         .append('text')
         .attr('transform', 'rotate(-90)')
         .attr('y', 0 - margin.left)
@@ -68,12 +77,12 @@ const AreaView = (props) => {
     // Add the line
     let curve = d3.curveLinear;
 
-    svg.append("path")
+    svg.append('path')
         .datum(dataset)
         .attr('fill', '#cce5df')
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 1.5)
-        .attr("d", d3.area()
+        .attr('stroke', 'steelblue')
+        .attr('stroke-width', 1.5)
+        .attr('d', d3.area()
             .curve(curve)
             .x(d => x(d.vaccine_date))
             .y0(y(0))
