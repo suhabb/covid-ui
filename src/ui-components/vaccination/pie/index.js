@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './pie-view.css';
 import PieChart from '../../../d3_graph/vaccination/pie_chart';
-import data from '../../../data/pie-data'
+import data from '../../../data/vaccine-company-data'
 
 export default class PieView extends Component {
 

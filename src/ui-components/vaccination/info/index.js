@@ -9,18 +9,13 @@ export default class Info extends Component {
         countryVaccine: this.props.countryData
     }
 
-
-   
     render() {
 
         let { countryData } = this.props;
         if(countryData === undefined || (Object.keys(countryData).length === 0)){
             countryData = data
         }
-        console.log(countryData)
-        console.log(data)
         const lastItem= countryData.data.slice(-1)[0]
-        console.log("last item",lastItem)
       
         const numFormatter = (num)=> {
             if(num > 999 && num < 1000000){
@@ -32,7 +27,6 @@ export default class Info extends Component {
             }
         }
     
-
         return (
             <div id='info' className='pane'>
                 <div className='header'>Country</div>

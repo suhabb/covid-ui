@@ -7,8 +7,8 @@ const BarView = (props) => {
     let dataset = [];
     data.vaccineCompanies.forEach(item => {
         let vaccineCompany = {
-            "vaccine": item.vaccine,
-            "totalVaccinations": item.totalVaccinations
+            'vaccine': item.vaccine,
+            'totalVaccinations': item.totalVaccinations
         }
         dataset.push(vaccineCompany)
     });
@@ -36,35 +36,35 @@ const BarView = (props) => {
         .domain([0, d3.max(dataset, d => d.totalVaccinations)])
         .range([graphHeight, 0]);
 
-    svg.selectAll(".bar")
+    svg.selectAll('.bar')
         .data(dataset)
         .enter()
-        .append("rect")
-        .attr("class", "bar")
+        .append('rect')
+        .attr('class', 'bar')
         .transition()
         .duration(2000)
-        .attr("x", d => x(d.vaccine))
-        .attr("width", x.bandwidth())
-        .attr("y", d => y(d.totalVaccinations))
-        .attr("height", d => graphHeight - y(d.totalVaccinations));
+        .attr('x', d => x(d.vaccine))
+        .attr('width', x.bandwidth())
+        .attr('y', d => y(d.totalVaccinations))
+        .attr('height', d => graphHeight - y(d.totalVaccinations));
 
-    svg.append("g")
+    svg.append('g')
         .attr('transform', `translate(0, ${graphHeight})`)
         .call(d3.axisBottom(x));
 
-    svg.append("g")
+    svg.append('g')
         .call(d3.axisLeft(y)
             .tickFormat(d => {
                 return numFormatter(d);
-            })).append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 0 - margin.left)
-            .attr("x", 0 - (graphHeight / 2))
-            .attr("dy", "1em")
-            .style("text-anchor", "middle")
-            .style("fill", '#141414' )
-            .text("People");;
-
+            }))
+            .append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('y', 0 - margin.left)
+            .attr('x', 0 - (graphHeight / 2))
+            .attr('dy', '1em')
+            .style('text-anchor', 'middle')
+            .style('fill', '#141414' )
+            .text('People');
 }
 
 const numFormatter = (num) => {

@@ -1,0 +1,7 @@
+.bar { 
+    fill: #8A2BE2; 
+}
+
+.x-axis path,y-axis path{
+    stroke:#ccc
+}
