@@ -25,7 +25,7 @@ const WorldMap = () => {
   }, [])
 
   const handleCountryClick = countryIndex => {
-    console.log("Clicked on country: ", geographies[countryIndex])
+   // console.log("Clicked on country: ", geographies[countryIndex])
   }
 
 

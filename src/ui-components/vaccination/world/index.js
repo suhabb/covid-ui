@@ -1,7 +1,7 @@
 import React from "react"
 import { geoEqualEarth, geoPath } from "d3-geo"
 import axios from 'axios'
-import { tsv,select } from "d3"
+import { tsv, select } from "d3"
 import './world-view.css'
 import tsvData from './110m.tsv'
 import { feature } from "topojson-client"
@@ -15,20 +15,21 @@ export default class WorldView extends React.Component {
     state = {
         geographies: [],
         vaccineSummary: {},
-        manufacturerSummary :{}
+        manufacturerSummary: {}
     }
 
     componentDidMount() {
         fetch("https://unpkg.com/world-atlas@2.0.2/countries-110m.json")
             .then(response => {
                 if (response.status !== 200) {
-                   // console.log(`There was a problem: ${response.status}`)
+                    console.log(`There was a problem: ${response.status}`)
                     return
                 }
                 response.json().then(worlddata => {
                     this.setState({ geographies: feature(worlddata, worlddata.objects.countries).features })
                 })
             })
+        this.handleOnLoad('GBR');
     }
 
 
@@ -41,19 +42,28 @@ export default class WorldView extends React.Component {
             data[0].forEach(item => {
                 if (countryData.id === item.iso_n3) {
                     iso = item.iso_a3;
-                   // console.log("ISO:", iso, item.iso_a3)
                 }
             })
             const vaccineResponse = this.vaccineRequest(iso)
             vaccineResponse.then(vaccine => {
-                console.log("Vaccine data", vaccine.data)
                 this.setState({ vaccineSummary: vaccine.data })
                 const manufacturerResponse = this.manufacturerRequest(iso)
                 manufacturerResponse.then(manufacturer => {
-                    console.log("Manufacturer data", manufacturer.data)
                     this.setState({ manufacturerSummary: manufacturer.data })
-                    this.props.parentCallback(vaccine.data,manufacturer.data);
+                    this.props.parentCallback(vaccine.data, manufacturer.data);
                 });
+            });
+        });
+    }
+
+    handleOnLoad = (iso) => {
+        const vaccineResponse = this.vaccineRequest(iso)
+        vaccineResponse.then(vaccine => {
+            this.setState({ vaccineSummary: vaccine.data })
+            const manufacturerResponse = this.manufacturerRequest(iso)
+            manufacturerResponse.then(manufacturer => {
+                this.setState({ manufacturerSummary: manufacturer.data })
+                this.props.parentCallback(vaccine.data, manufacturer.data);
             });
         });
     }
@@ -78,8 +88,7 @@ export default class WorldView extends React.Component {
         }
     }
 
-    handleMouseOver=(countryIndex,i,n)=>{
-        console.log("iso")
+    handleMouseOver = (countryIndex, i, n) => {
         const countryData = this.state.geographies[countryIndex]
         let iso;
         Promise.all([
@@ -88,19 +97,15 @@ export default class WorldView extends React.Component {
             data[0].forEach(item => {
                 if (countryData.id === item.iso_n3) {
                     iso = item.iso_a3;
-                    console.log("ISO:", iso, item.iso_a3)
                 }
             })
-        }).then(()=>{
-            console.log("2nd iso",iso)
-            console.log("Path:",n[countryIndex])
-
+        }).then(() => {
             //TODO
-            select("path#path-"+countryIndex)
-            .attr("text-anchor", "middle")  
-            .style("font-size", "16px") 
-            .style("text-decoration", "underline") 
-            .text(()=>"Hello:"+iso);
+            select("path#path-" + countryIndex)
+                .attr("text-anchor", "middle")
+                .style("font-size", "16px")
+                .style("text-decoration", "underline")
+                .text(() => "Hello:" + iso);
         });
     }
 
@@ -112,7 +117,7 @@ export default class WorldView extends React.Component {
                 <svg width={800} height={350} viewBox="0 0 800 450">
                     <g className="world-view">
                         {
-                            this.state.geographies.map((d,i,n) => (
+                            this.state.geographies.map((d, i) => (
                                 <path
                                     id={`path-${i}`}
                                     key={`path-${i}`}
@@ -121,7 +126,8 @@ export default class WorldView extends React.Component {
                                     fill={`rgba(38,50,56,${1 / this.state.geographies.length * i})`}
                                     stroke="aliceblue"
                                     strokeWidth={0.5}
-                                    onMouseOver={()=> this.handleMouseOver(i,d,n)}
+                                    onLoad={() => this.handleOnLoad('IND')}
+                                    //onMouseOver={()=> this.handleMouseOver(i,d,n)}
                                     onClick={() => this.handleCountryClick(i)}
                                 />
                             ))

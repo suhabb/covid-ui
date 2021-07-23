@@ -11,7 +11,6 @@ export default class AreaChartView extends Component {
         let { countryData } = this.props;
         if(countryData === undefined || (Object.keys(countryData).length === 0)){
             countryData = data
-            console.log("area",data)
         }
         const width = 560;
         const height = 480;

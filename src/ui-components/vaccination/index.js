@@ -2,10 +2,10 @@ import React from 'react'
 
 import WorldView from './world'
 import PieView from './pie';
+import TabularView from './tabular'
 import BarChartView from './bar';
 import FooterView from './footer'
 import Info from './info'
-import Test from './test'
 import { Layout } from 'antd';
 import './vaccination.css'
 import AreaChartView from './area';
@@ -24,9 +24,6 @@ export class VaccinationView extends React.Component {
     callbackFunction = (vaccineData, manufacturerData) => {
         this.setState({ vaccine: vaccineData })
         this.setState({ manufacturer: manufacturerData })
-        console.log("Vaccine data", vaccineData)
-        console.log("Manuufacturer  data", manufacturerData)
-        console.log("VaccineView data", this.state.vaccine)
     }
 
     render() {
@@ -43,15 +40,15 @@ export class VaccinationView extends React.Component {
                     </Sider>
                     <Layout>
                         <Content style={{ height: 300 }}>
-                            <WorldView parentCallback={this.callbackFunction} style={{ height: 300 ,width:300}}/>
+                            <WorldView parentCallback={this.callbackFunction} style={{ height: 300, width: 300 }} />
                             <BarChartView manufacturerData={this.state.manufacturer} width={600} height={650} />
                         </Content>
                         <Sider width={600} style={{ backgroundColor: '#eee' }}>
                             <Content style={{ height: 450 }}>
-                                <AreaChartView countryData={this.state.vaccine} width={1000} height={750}/>
+                                <AreaChartView countryData={this.state.vaccine} width={1000} height={750} />
                             </Content>
-                            <Content style={{ height: 340 }}>
-                                <Test />
+                            <Content style={{ height: 350 }}>
+                                <TabularView countryData={this.state.vaccine}/>
                             </Content>
                         </Sider>
                     </Layout>

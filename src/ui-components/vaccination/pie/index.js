@@ -14,7 +14,6 @@ export default class PieView extends Component {
         if(manufacturerData === undefined || (Object.keys(manufacturerData).length === 0)){
             manufacturerData = data
         }
-        console.log(manufacturerData)
         const width = 260;
         const height = 450;
         return (

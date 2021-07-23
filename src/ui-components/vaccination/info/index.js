@@ -29,7 +29,7 @@ export default class Info extends Component {
     
         return (
             <div id='info' className='pane'>
-                <div className='header'>Country</div>
+                <div className='header'>Country: {countryData.country}</div>
                 <Flag  width="270" height="200" code={this.props.countryData.iso_code} fallback={ <img src="no-image-icon.png" alt="No Flag Available" height="200" width="270"/>} />
                 <div>
                     

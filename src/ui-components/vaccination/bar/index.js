@@ -14,7 +14,6 @@ export default class BarChartView extends Component {
         if (manufacturerData === undefined || (Object.keys(manufacturerData).length === 0)) {
             manufacturerData = data
         }
-        console.log(manufacturerData)
         return (
             <div id='bar-view' className='pane'>
                 <div className='header'>Bar Chart : {manufacturerData.location}</div>
