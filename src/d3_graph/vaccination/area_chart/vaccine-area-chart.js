@@ -70,7 +70,7 @@ const AreaView = (props) => {
         .attr('transform', 'rotate(-90)')
         .attr('y', 0 - margin.left)
         .attr('x', 0 - (graphHeight / 2))
-        .attr('dy', '1em')
+        .attr('dy', '2em')
         .style('text-anchor', 'middle')
         .style('fill', '#141414')
         .text('Daily Vaccinations');

@@ -14,9 +14,14 @@
 
 }
 
+.country-header {
+    color:#4415b9;
+    font-weight: bold
+}
+
 
 .header {
-    background-color: #eee;
+    background-color: #a2bed7;
     margin: 5px;
     padding-left: 10px;
     padding-top: 4px;
