@@ -15,6 +15,10 @@ const BarView = (props) => {
 
     d3.select('.vaccine-barchart > *').remove();
 
+var tooltip = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+
     const margin = { top: 20, right: 20, bottom: 30, left: 60 };
     const graphWidth = props.width - margin.left - margin.right;
     const graphHeight = props.height - margin.top - margin.bottom;
@@ -41,12 +45,25 @@ const BarView = (props) => {
         .enter()
         .append('rect')
         .attr('class', 'bar')
-        .transition()
-        .duration(2000)
+      //  .transition()
+       // .duration(2000)
         .attr('x', d => x(d.vaccine))
         .attr('width', x.bandwidth())
         .attr('y', d => y(d.totalVaccinations))
-        .attr('height', d => graphHeight - y(d.totalVaccinations));
+        .attr('height', d => graphHeight - y(d.totalVaccinations))
+        .on('mouseover', function(event,d) {		
+            tooltip.transition()		
+                .duration(200)		
+                .style("opacity", .9);		
+            tooltip.html("Total Vaccination:" + d.totalVaccinations + "<br/>")	
+                .style("left", (event.pageX) + "px")		
+                .style("top", (event.pageY - 28) + "px");	
+            })					
+        .on('mouseout', function(d) {		
+            tooltip.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        });;
 
     svg.append('g')
         .attr('transform', `translate(0, ${graphHeight})`)
