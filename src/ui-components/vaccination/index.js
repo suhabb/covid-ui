@@ -4,7 +4,7 @@ import WorldView from './world'
 import PieView from './pie';
 import TabularView from './tabular'
 import BarChartView from './bar';
-import FooterView from './footer'
+import FooterView from '../../footer'
 import Info from './info'
 import { Layout } from 'antd';
 import './vaccination.css'

@@ -1,7 +1,7 @@
 import React from "react"
 import { geoEqualEarth, geoPath } from "d3-geo"
 import axios from 'axios'
-import { tsv, select ,selectAll} from "d3"
+import { tsv, select, selectAll } from "d3"
 import './world-view.css'
 import tsvData from './110m.tsv'
 import { feature } from "topojson-client"
@@ -88,35 +88,13 @@ export default class WorldView extends React.Component {
         }
     }
 
-    handleMouseOver = (countryIndex, i, n) => {
-        const countryData = this.state.geographies[countryIndex]
-        let iso;
-        Promise.all([
-            tsv(tsvData),
-        ]).then(data => {
-            data[0].forEach(item => {
-                if (countryData.id === item.iso_n3) {
-                    iso = item.iso_a3;
-                }
-            })
-        }).then(() => {
-            //TODO
-            select("path#path-" + countryIndex)
-                .attr("text-anchor", "middle")
-                .style("font-size", "16px")
-                .style("text-decoration", "underline")
-                .text(() => "Hello:" + iso);
-        });
-    }
-
-
     render() {
 
         selectAll('.tooltip').remove();
-        const tooltip = 
-        select(".world-map")
-        .append("div")
-        .attr("class", "hidden tooltip");
+        const tooltip =
+            select(".world-map")
+                .append("div")
+                .attr("class", "hidden tooltip");
         return (
             <div className='pane'>
                 <div className='header'>World Map</div>
@@ -134,31 +112,30 @@ export default class WorldView extends React.Component {
                                     stroke="aliceblue"
                                     strokeWidth={0.5}
                                     onLoad={() => this.handleOnLoad('IND')}
-                                    //onMouseOver={()=> this.handleMouseOver(i,d,n)}
                                     onClick={() => this.handleCountryClick(i)}
-                                    onMouseMove={(event,i) =>  {
-                                            tooltip
-                                                .classed("hidden", false)
-                                                .html(
-                                                    "<h6>" +
-                                                    d.properties.name 
-                                                    +
-                                                    "</h6>"
-                                                )
-                                                .attr(
-                                                    "style",
-                                                    "left:" +
-                                                    (event.pageX + 15) +
-                                                    "px; top:" +
-                                                    (event.pageY + 20) +
-                                                    "px"
-                                                );
-                                        }}
-                                        onMouseOut={() => {
-                                            tooltip.classed("hidden", true);
-                                        }}
-                                    
-                                    />
+                                    onMouseMove={(event) => {
+                                        tooltip
+                                            .classed("hidden", false)
+                                            .html(
+                                                "<h6>" +
+                                                d.properties.name
+                                                +
+                                                "</h6>"
+                                            )
+                                            .attr(
+                                                "style",
+                                                "left:" +
+                                                (event.pageX + 15) +
+                                                "px; top:" +
+                                                (event.pageY + 20) +
+                                                "px"
+                                            );
+                                    }}
+                                    onMouseOut={() => {
+                                        tooltip.classed("hidden", true);
+                                    }}
+
+                                />
                             ))
                         }
                     </g>
