@@ -114,13 +114,13 @@ export default class WorldView extends React.Component {
 
         selectAll('.tooltip').remove();
         const tooltip = 
-        select(".visualisation")
+        select(".world-map")
         .append("div")
         .attr("class", "hidden tooltip");
         return (
             <div className='pane'>
                 <div className='header'>World Map</div>
-                <div class="visualisation"> </div>
+                <div className="world-map"> </div>
                 <svg width={800} height={350} viewBox="0 0 800 450">
                     <g className="world-view">
                         {
@@ -137,7 +137,6 @@ export default class WorldView extends React.Component {
                                     //onMouseOver={()=> this.handleMouseOver(i,d,n)}
                                     onClick={() => this.handleCountryClick(i)}
                                     onMouseMove={(event,i) =>  {
-                                            console.log("On mouse move",d.properties.name)
                                             tooltip
                                                 .classed("hidden", false)
                                                 .html(
