@@ -1,7 +1,7 @@
 import React from "react"
 import { geoEqualEarth, geoPath } from "d3-geo"
 import axios from 'axios'
-import { tsv, select } from "d3"
+import { tsv, select ,selectAll} from "d3"
 import './world-view.css'
 import tsvData from './110m.tsv'
 import { feature } from "topojson-client"
@@ -111,9 +111,16 @@ export default class WorldView extends React.Component {
 
 
     render() {
+
+        selectAll('.tooltip').remove();
+        const tooltip = 
+        select(".visualisation")
+        .append("div")
+        .attr("class", "hidden tooltip");
         return (
             <div className='pane'>
                 <div className='header'>World Map</div>
+                <div class="visualisation"> </div>
                 <svg width={800} height={350} viewBox="0 0 800 450">
                     <g className="world-view">
                         {
@@ -129,7 +136,30 @@ export default class WorldView extends React.Component {
                                     onLoad={() => this.handleOnLoad('IND')}
                                     //onMouseOver={()=> this.handleMouseOver(i,d,n)}
                                     onClick={() => this.handleCountryClick(i)}
-                                />
+                                    onMouseMove={(event,i) =>  {
+                                            console.log("On mouse move",d.properties.name)
+                                            tooltip
+                                                .classed("hidden", false)
+                                                .html(
+                                                    "<h6>" +
+                                                    d.properties.name 
+                                                    +
+                                                    "</h6>"
+                                                )
+                                                .attr(
+                                                    "style",
+                                                    "left:" +
+                                                    (event.pageX + 15) +
+                                                    "px; top:" +
+                                                    (event.pageY + 20) +
+                                                    "px"
+                                                );
+                                        }}
+                                        onMouseOut={() => {
+                                            tooltip.classed("hidden", true);
+                                        }}
+                                    
+                                    />
                             ))
                         }
                     </g>
