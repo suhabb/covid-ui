@@ -111,8 +111,7 @@ export default class WorldView extends React.Component {
                                     fill={`rgba(38,50,56,${1 / this.state.geographies.length * i})`}
                                     stroke="aliceblue"
                                     strokeWidth={0.5}
-                                    onLoad={() => this.handleOnLoad('IND')}
-                                    onClick={() => this.handleCountryClick(i)}
+                                    onMouseOver={() => this.handleCountryClick(i)}
                                     onMouseMove={(event) => {
                                         tooltip
                                             .classed("hidden", false)

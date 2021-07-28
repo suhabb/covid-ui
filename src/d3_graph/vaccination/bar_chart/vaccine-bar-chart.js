@@ -52,16 +52,16 @@ var tooltip = d3.select("body").append("div")
         .attr('y', d => y(d.totalVaccinations))
         .attr('height', d => graphHeight - y(d.totalVaccinations))
         .on('mouseover', function(event,d) {		
-            tooltip.transition()		
-                .duration(200)		
+            tooltip.transition()	
+             //   .duration(500)			
                 .style("opacity", .9);		
             tooltip.html("Total Vaccination:" + d.totalVaccinations + "<br/>")	
                 .style("left", (event.pageX) + "px")		
                 .style("top", (event.pageY - 28) + "px");	
             })					
         .on('mouseout', function(d) {		
-            tooltip.transition()		
-                .duration(500)		
+            tooltip.transition()
+              //  .duration(400)				
                 .style("opacity", 0);	
         });;
 

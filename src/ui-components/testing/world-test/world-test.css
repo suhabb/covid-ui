@@ -1,0 +1,70 @@
+#world-view {
+    height: 500px;
+} 
+
+.country1 {
+    stroke: #fff;
+    fill:#005DAA;
+  } 
+
+.hidden {
+    display: none;
+}
+
+svg1 {
+    position: center;
+    background-color: #FFF;
+}
+
+.world {
+  transform-origin: center;
+}
+
+.sphere {
+    fill: #4242e4;
+  }
+  
+.country {
+    fill: rgba(38,50,56,0.4632768361581921);
+    stroke: #FFF;
+    stroke-width: 0.10px;
+ }
+  
+.country:hover {
+    fill:  rgb(33, 113, 181);
+}
+  
+div.tooltip h6 {
+  margin: 0;
+ }
+  
+
+
+div.tooltip {
+  padding: 0.5rem;
+  width: 12.5rem;
+  background-color: white;
+  border: 0.0625rem solid #ddd;
+  box-shadow: 0 0 0.5rem rgba(192, 192, 192, 0.5);
+  padding-top: 0.75rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.75rem;
+  padding-left: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tooltip-text{
+  width: 100px;
+  color: cornflowerblue;
+  text-align: center;
+  border-radius: 10px;  /* This defines tooltip text position */
+}
+
+.tooltip-header{
+  width: 100px;
+  color: #AAAAAA;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;  /* This defines tooltip text position */
+}
