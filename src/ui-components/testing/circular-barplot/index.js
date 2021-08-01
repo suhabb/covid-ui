@@ -9,11 +9,12 @@ export default class CircularPlotView extends Component {
         let filterDataset = [];
         let countryList = [];
         this.props.worldDataProp.forEach(item => {
+            
             let worldObj = {
-                'deaths': item.deathsPerOneMillion,
-                'cases': item.casesPerOneMillion,
-                'active': item.activePerOneMillion,
-                'recovered': item.recoveredPerOneMillion,
+                'deaths': item.deaths,
+                'cases': item.cases,
+                'active': item.active,
+                'recovered': item.recovered,
                 'continent': item.continent,
                 'country': item.country,
                 'population': item.population
@@ -22,13 +23,13 @@ export default class CircularPlotView extends Component {
             countryList.push(item.country);
         })
 
-        filterDataset = filterDataset.sort((a, b) => b.active - a.active).slice(0, 22);
+        filterDataset = filterDataset.sort((a, b) => b.active - a.active).slice(0, 20);
         console.log(filterDataset)
 
         d3.selectAll('.circular-bar-plot > *').remove();
 
         // set the dimensions and margins of the graph
-        const margin = { top: 70, right: 60, bottom: 50, left: 50 },
+        const margin = { top: 70, right: 70, bottom: 50, left: 80 },
             width = this.props.width - margin.left - margin.right,
             height = this.props.height - margin.top - margin.bottom;
 
@@ -45,19 +46,34 @@ export default class CircularPlotView extends Component {
             .range([0, width]);
         svg.append("g")
             .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x))
+            .append("text")
+            .attr("transform",
+                "translate(" + (width / 2) + " ," +
+                (height + margin.top + 20) + ")")
+            .style("text-anchor", "middle")
+            .text("Recovered");
+
 
         // Add Y axis
         const y = d3.scaleLinear()
-            .domain([0, d3.max(filterDataset, d => d.active) + 20000])
+            .domain([0, d3.max(filterDataset, d => d.active)])
             .range([height, 0]);
         svg.append("g")
-            .call(d3.axisLeft(y));
+            .call(d3.axisLeft(y))
+            .append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('y', 0 - margin.left)
+            .attr('x', 0 - (height / 2))
+            .attr('dy', '1em')
+            .style('text-anchor', 'middle')
+            .style('fill', '#141414')
+            .text('Active Cases');;
 
         // Add a scale for bubble size
         const z = d3.scaleLinear()
-            .domain([d3.min(filterDataset, d => d.population), d3.max(filterDataset, d => d.population)])
-            .range([d3.min(filterDataset, d => d.recovered), d3.max(filterDataset, d => d.recovered)]);
+            .domain([d3.min(filterDataset, d => d.recovered), d3.max(filterDataset, d => d.recovered)])
+            .range([4, 20]);
 
 
         // Add a scale for bubble color
@@ -65,7 +81,7 @@ export default class CircularPlotView extends Component {
             .domain(countryList)
             .range(d3.schemeSet2);
 
-        // -1- Create a tooltip div that is hidden by default:
+
         const tooltip = d3.select(".circular-bar-plot")
             .append("div")
             .style("opacity", 0)
@@ -113,7 +129,7 @@ export default class CircularPlotView extends Component {
 
         return (
             <div id='circular-plot-view' className='pane' >
-                <div className='header'>Circular Bubble View </div>
+                <div className='header'>Bubble View : Recovered Cases</div>
                 <div>
                     <div className='circular-bar-plot' />
                 </div>

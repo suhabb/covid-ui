@@ -23,7 +23,7 @@ const AreaView = (props) => {
 
     d3.select('.vaccine-areachart  > *').remove();
 
-    const margin = { top: 20, right: 20, bottom: 130, left: 70 }
+    const margin = { top: 20, right: 20, bottom: 180, left: 70 }
     const graphWidth = props.width - margin.left - margin.right;;
     const graphHeight = props.height - margin.top - margin.bottom;
 

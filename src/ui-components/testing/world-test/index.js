@@ -63,15 +63,12 @@ export default class WorldTestView extends React.Component {
             covidResponse.then(covid => {
                 if (covid.data === undefined || (Object.keys(covid.data).length === 0)) {
                     covid.data = mockData;
-                    console.log("Mock Data", mockData)
                 }
                 this.setState({ covidSummary: covid.data })
                 const covidTimelineRequest = this.covidTimelineRequest(iso);
                 covidTimelineRequest.then(timeline => {
-                    console.log("Covid Timeline Data", timeline.data)
                     if (timeline.data === undefined || (Object.keys(timeline.data).length === 0)) {
                         timeline.data = mockLineData;
-                        console.log("Mock Line Data", mockLineData)
                     }
                     this.setState({ timelineData: timeline.data })
                     this.props.parentCallback(covid.data, timeline.data);
@@ -169,20 +166,22 @@ export default class WorldTestView extends React.Component {
                 });
 
         const svg =
-            d3.select(".svg-map")
+            d3.select(".svg-map-world")
                 .attr("width", width)
                 .attr("height", height)
                 .attr("preserveAspectRatio", "xMinYMin meet")
-                .attr("viewBox", `0 0 ${width} ${height}`)
-                .call(zoomWorld);
+                .attr("viewBox", `0 0 800 450`)
+                .call(d3.zoom().on("zoom", function (event) {
+                    svg.attr("transform", event.transform)
+                 }));
 
 
         return (
             <div className='pane'>
                 <div className='header'>World Map</div>
                 <div className="world-map"> </div>
-                <svg width={width} height={height} viewBox="0 0 800 450" className="svg-map">
-                    <g className="world-view">
+                <svg width={width} height={height} viewBox="0 0 800 450" className="svg-map-world">
+                    <g className="world-test-view">
                         {
                             this.state.geographies.map((d, i) => (
                                 <path

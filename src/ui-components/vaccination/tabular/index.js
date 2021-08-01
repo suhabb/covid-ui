@@ -13,7 +13,6 @@ export default class Tabular extends Component {
             countryData = data
         }
 
-        const tableHeight = 480;
         let vaccineDayToDayList = [];
 
         const numFormatter = (num) => {
@@ -56,7 +55,7 @@ export default class Tabular extends Component {
             <div>
                 <div id='tabular-view' className='pane'>
                     <div className='header'>Tabular Chart: {countryData.country}</div>
-                    <Table columns={columns} dataSource={vaccineDayToDayList} height={tableHeight} scroll={{ y: 283 }} />
+                    <Table columns={columns} dataSource={vaccineDayToDayList} height={500} scroll={{ y: 283 }} />
                 </div>
             </div>
         )

@@ -5,7 +5,7 @@ import './linear-bar.css'
 export default class LinearBarChart extends Component {
 
     render() {
-        console.log('Line Chart',this.props.worldDataProp)
+        console.log('Line Chart', this.props.worldDataProp)
         let filterDataset = [];
         this.props.worldDataProp.forEach(item => {
             let worldObj = {
@@ -40,7 +40,9 @@ export default class LinearBarChart extends Component {
             .range([0, width]);
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x))
+            .call(d3.axisBottom(x)
+                .ticks(10)
+                .tickFormat(d => numFormatter(d)))
             .selectAll("text")
             .attr("transform", "translate(-10,0)rotate(-45)")
             .style("text-anchor", "end");
@@ -59,7 +61,7 @@ export default class LinearBarChart extends Component {
             .enter()
             .append("rect")
             .transition() // <---- Here is the transition
-            .duration(200) 
+            .duration(200)
             .attr("x", x(0))
             .attr("y", function (d) { return y(d.country); })
             .attr("width", function (d) { return x(d.cases); })

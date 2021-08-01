@@ -1,13 +1,14 @@
 import React from 'react'
 
 import FooterView from '../../footer'
-import Test from '../../ui-components/test'
+import TestInfo from './test-info'
 import WorldTestView from './world-test'
 import { Layout } from 'antd';
 import './covid-testing.css'
-import BarTestView from './bar-test';
 import LinearBarChart from './linear-bar';
 import CircularPlotView from './circular-barplot';
+import DonutChartView from './donut-chart';
+import LollipopChartView from './lollipop-chart';
 
 
 const { Sider, Content } = Layout;
@@ -19,7 +20,7 @@ export class TestingView extends React.Component {
         this.state = {
             covidTestingData: {},
             covidTimelineData: {},
-            worldData:[]
+            worldData: []
         }
     }
 
@@ -31,10 +32,10 @@ export class TestingView extends React.Component {
                     return
                 }
                 resp.json().then(world => {
-                    console.log('Wordldddddddd',world)
+                    console.log('Wordldddddddd', world)
                     this.setState({ worldData: world })
                 })
-                
+
             });
     }
 
@@ -45,29 +46,29 @@ export class TestingView extends React.Component {
     }
 
     render() {
-        console.log("World----",this.state.worldData)
+
         return (
             <div>
                 <Layout style={{ height: 920 }}>
                     <Sider width={300} style={{ backgroundColor: '#eee' }}>
-                        <Content style={{ height: 380 }}>
-                            <Test countryData={this.state.vaccine} />
+                        <Content style={{ height: 400 }}>
+                            <TestInfo covidTestingData={this.state.covidTestingData}/>
                         </Content>
-                        <Content style={{ height: 640 }}>
-                            <Test />
+                        <Content style={{ height: 320 }}>
+                            <LollipopChartView timelineData={this.state.covidTimelineData} width={300} height={490} />
                         </Content>
                     </Sider>
                     <Layout>
-                        <Content style={{ height: 300 }}>
+                        <Content style={{ height: 600 }}>
                             <WorldTestView parentCallback={this.callbackFunction} width={800} height={350} />
-                            <BarTestView covidTestingData={this.state.covidTestingData} width={800} height={450} />
+                            <DonutChartView covidTestingData={this.state.covidTestingData} width={450} height={450} />
                         </Content>
                         <Sider width={600} style={{ backgroundColor: '#eee' }}>
                             <Content style={{ height: 400 }}>
                                 <LinearBarChart worldDataProp={this.state.worldData} width={560} height={440} />
                             </Content>
                             <Content style={{ height: 320 }}>
-                                <CircularPlotView  worldDataProp={this.state.worldData} width={560} height={440}  />
+                                <CircularPlotView worldDataProp={this.state.worldData} width={560} height={440} />
                             </Content>
                         </Sider>
                     </Layout>

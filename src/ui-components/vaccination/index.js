@@ -31,7 +31,7 @@ export class VaccinationView extends React.Component {
             <div>
                 <Layout style={{ height: 920 }}>
                     <Sider width={300} style={{ backgroundColor: '#eee' }}>
-                        <Content style={{ height: 380 }}>
+                        <Content style={{ height: 400 }}>
                             <Info countryData={this.state.vaccine} />
                         </Content>
                         <Content style={{ height: 640 }}>
@@ -39,12 +39,12 @@ export class VaccinationView extends React.Component {
                         </Content>
                     </Sider>
                     <Layout>
-                        <Content style={{ height: 300 }}>
+                        <Content style={{ height: 320 }}>
                             <WorldView parentCallback={this.callbackFunction} width={800} height={350}/>
                             <BarChartView manufacturerData={this.state.manufacturer} />
                         </Content>
                         <Sider width={600} style={{ backgroundColor: '#eee' }}>
-                            <Content style={{ height: 450 }}>
+                            <Content style={{ height: 400 }}>
                                 <AreaChartView countryData={this.state.vaccine} width={1000} height={750} />
                             </Content>
                             <Content style={{ height: 350 }}>

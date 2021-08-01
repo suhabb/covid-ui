@@ -1,0 +1,14 @@
+#lollipop-chart-view{
+    height: 510px;
+}
+
+
+
+.header {
+    background-color: #a2bed7;
+    margin: 5px;
+    padding-left: 10px;
+    padding-top: 4px;
+    border-radius: 5px;
+    height: 30px;
+}
