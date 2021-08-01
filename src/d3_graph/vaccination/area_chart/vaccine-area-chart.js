@@ -4,7 +4,6 @@ import './style.css';
 const AreaView = (props) => {
 
     const countryData = props.data;
-    console.log('areaview data:', props)
     let dataset = [];
     countryData.area_data = [];
     if (countryData.data.length > 10) {

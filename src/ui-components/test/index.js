@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Test = () => {
+const LineGraph = () => {
     return (
         <div>
-            Test
+            
         </div>
     )
 }
-export default Test
+export default LineGraph

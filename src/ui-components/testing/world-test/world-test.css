@@ -1,5 +1,5 @@
 #world-view {
-    height: 500px;
+    height: 400px;
 } 
 
 .country1 {
@@ -67,4 +67,13 @@ div.tooltip {
   text-align: center;
   border-radius: 10px;
   font-weight: bold;  /* This defines tooltip text position */
+}
+
+.header {
+  background-color: #a2bed7;
+  margin: 5px;
+  padding-left: 10px;
+  padding-top: 4px;
+  border-radius: 5px;
+  height: 30px;
 }

@@ -1,11 +1,14 @@
 import React from 'react'
-import { Button } from 'antd';
 
 import FooterView from '../../footer'
 import Test from '../../ui-components/test'
 import WorldTestView from './world-test'
 import { Layout } from 'antd';
 import './covid-testing.css'
+import BarTestView from './bar-test';
+import LinearBarChart from './linear-bar';
+import CircularPlotView from './circular-barplot';
+
 
 const { Sider, Content } = Layout;
 
@@ -14,17 +17,35 @@ export class TestingView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            vaccine: {},
-            manufacturer: {}
+            covidTestingData: {},
+            covidTimelineData: {},
+            worldData:[]
         }
     }
 
-    callbackFunction = (vaccineData, manufacturerData) => {
-        this.setState({ vaccine: vaccineData })
-        this.setState({ manufacturer: manufacturerData })
+    componentWillMount() {
+        fetch("http://localhost:8081/covid-testing-service/testing/all")
+            .then(resp => {
+                if (resp.status !== 200) {
+                    console.log(`There was a problem: ${resp.status}`)
+                    return
+                }
+                resp.json().then(world => {
+                    console.log('Wordldddddddd',world)
+                    this.setState({ worldData: world })
+                })
+                
+            });
+    }
+
+
+    callbackFunction = (covidData, timelineData) => {
+        this.setState({ covidTestingData: covidData })
+        this.setState({ covidTimelineData: timelineData })
     }
 
     render() {
+        console.log("World----",this.state.worldData)
         return (
             <div>
                 <Layout style={{ height: 920 }}>
@@ -38,14 +59,15 @@ export class TestingView extends React.Component {
                     </Sider>
                     <Layout>
                         <Content style={{ height: 300 }}>
-                            <WorldTestView style={{ height: 300, width: 800 }} />
+                            <WorldTestView parentCallback={this.callbackFunction} width={800} height={350} />
+                            <BarTestView covidTestingData={this.state.covidTestingData} width={800} height={450} />
                         </Content>
                         <Sider width={600} style={{ backgroundColor: '#eee' }}>
-                            <Content style={{ height: 450 }}>
-                                <Test />
+                            <Content style={{ height: 400 }}>
+                                <LinearBarChart worldDataProp={this.state.worldData} width={560} height={440} />
                             </Content>
-                            <Content style={{ height: 350 }}>
-                                <Test countryData={this.state.vaccine} />
+                            <Content style={{ height: 320 }}>
+                                <CircularPlotView  worldDataProp={this.state.worldData} width={560} height={440}  />
                             </Content>
                         </Sider>
                     </Layout>

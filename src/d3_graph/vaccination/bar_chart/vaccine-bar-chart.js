@@ -45,8 +45,6 @@ var tooltip = d3.select("body").append("div")
         .enter()
         .append('rect')
         .attr('class', 'bar')
-      //  .transition()
-       // .duration(2000)
         .attr('x', d => x(d.vaccine))
         .attr('width', x.bandwidth())
         .attr('y', d => y(d.totalVaccinations))
@@ -60,8 +58,7 @@ var tooltip = d3.select("body").append("div")
                 .style("top", (event.pageY - 28) + "px");	
             })					
         .on('mouseout', function(d) {		
-            tooltip.transition()
-              //  .duration(400)				
+            tooltip.transition()			
                 .style("opacity", 0);	
         });;
 

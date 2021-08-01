@@ -40,8 +40,8 @@ export class VaccinationView extends React.Component {
                     </Sider>
                     <Layout>
                         <Content style={{ height: 300 }}>
-                            <WorldView parentCallback={this.callbackFunction} style={{ height: 300, width: 300 }} />
-                            <BarChartView manufacturerData={this.state.manufacturer} width={600} height={650} />
+                            <WorldView parentCallback={this.callbackFunction} width={800} height={350}/>
+                            <BarChartView manufacturerData={this.state.manufacturer} />
                         </Content>
                         <Sider width={600} style={{ backgroundColor: '#eee' }}>
                             <Content style={{ height: 450 }}>

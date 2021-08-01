@@ -95,11 +95,13 @@ export default class WorldView extends React.Component {
             select(".world-map")
                 .append("div")
                 .attr("class", "hidden tooltip");
+        const width = this.props.width;
+        const height = this.props.height;
         return (
             <div className='pane'>
                 <div className='header'>World Map</div>
                 <div className="world-map"> </div>
-                <svg width={800} height={350} viewBox="0 0 800 450">
+                <svg width={width} height={height} viewBox="0 0 800 450">
                     <g className="world-view">
                         {
                             this.state.geographies.map((d, i) => (
