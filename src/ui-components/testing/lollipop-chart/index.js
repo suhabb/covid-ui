@@ -23,6 +23,7 @@ export default class LollipopChartView extends Component {
         dataset.forEach(item => {
             item.date = new Date(item.date);
         })
+        dataset = dataset.sort((a, b) => a.date - b.date)
 
         // set the dimensions and margins of the graph
         var margin = { top: 20, right: 30, bottom: 100, left: 60 },

@@ -1,0 +1,17 @@
+#info-report-chart {
+    height: 400px;
+}
+
+.info-report-view {
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-right: 5px;
+}
+
+.info-report-view span{
+    color:#351c75;
+    font-weight: bold
+
+}

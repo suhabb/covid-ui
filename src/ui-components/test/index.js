@@ -1,10 +1,16 @@
 import React from 'react'
 
-const LineGraph = () => {
+
+
+const Test = () => {
     return (
-        <div>
-            
+
+        <div id='test-view' className='pane'>
+            <div className='header'>Test Chart</div>
+            <div>
+                <div className='test-scan-view' />
+            </div>
         </div>
     )
 }
-export default LineGraph
+export default Test

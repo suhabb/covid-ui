@@ -15,8 +15,8 @@ export default class DonutChartView extends Component {
         let data = {
             'cases': covidTestingData.cases,
             'deaths': covidTestingData.deaths,
-            'active': covidTestingData.active,
-            'recovered': covidTestingData.recovered
+            'recovered': covidTestingData.recovered,
+            'active': covidTestingData.active
         };
         // set the dimensions and margins of the graph
         const width = 850,
