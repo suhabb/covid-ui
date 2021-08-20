@@ -70,7 +70,7 @@ export default class WorldView extends React.Component {
 
     vaccineRequest = (iso) => {
         try {
-            const vaccineUrl = 'http://localhost:8080/covid-vaccination-service/country/iso-code/' + iso
+            const vaccineUrl = 'http://localhost:9000/covid-vaccination-service/vaccination/country/iso-code/' + iso
             console.log(vaccineUrl)
             return axios.get(vaccineUrl);
         } catch (err) {
@@ -80,7 +80,7 @@ export default class WorldView extends React.Component {
 
     manufacturerRequest = (iso) => {
         try {
-            const manufacturerUrl = 'http://localhost:8080/covid-vaccination-service/manufacturer/iso-code/' + iso
+            const manufacturerUrl = 'http://localhost:9000/covid-vaccination-service/vaccination/manufacturer/iso-code/' + iso
             console.log(manufacturerUrl)
             return axios.get(manufacturerUrl);
         } catch (err) {

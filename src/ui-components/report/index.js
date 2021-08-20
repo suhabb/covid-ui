@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Test from '../test'
+
 import FooterView from '../../footer'
 import { Layout } from 'antd';
 import './covid-report.css'
@@ -10,7 +10,7 @@ import ReportImageView from './report-view'
 import PieReportChart from './pie-report'
 import ReportLollipopChart from './report-lollipop'
 
-const { Header, Footer, Sider, Content } = Layout;
+const {Sider, Content } = Layout;
 
 export default class ReportView extends Component {
 
@@ -19,7 +19,7 @@ export default class ReportView extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8083/covid-reporting-service/reporting/all/stats")
+        fetch("http://localhost:9000/covid-reporting-service/reporting/all/stats")
             .then(response => {
                 if (response.status !== 200) {
                     console.log(`There was a problem: ${response.status}`)

@@ -25,14 +25,13 @@ export class TestingView extends React.Component {
     }
 
     componentWillMount() {
-        fetch("http://localhost:8081/covid-testing-service/testing/all")
+        fetch("http://localhost:9000/covid-testing-service/testing/all")
             .then(resp => {
                 if (resp.status !== 200) {
                     console.log(`There was a problem: ${resp.status}`)
                     return
                 }
                 resp.json().then(world => {
-                    console.log('Wordldddddddd', world)
                     this.setState({ worldData: world })
                 })
 

@@ -31,7 +31,7 @@ export default class WorldTestView extends React.Component {
                 response.json().then(worlddata => {
                     this.setState({ geographies: feature(worlddata, worlddata.objects.countries).features })
                 });
-                fetch("http://localhost:8081/covid-testing-service/testing/all")
+                fetch("http://localhost:9000/covid-testing-service/testing/all")
                     .then(resp => {
                         if (resp.status !== 200) {
                             console.log(`There was a problem: ${resp.status}`)
@@ -79,7 +79,7 @@ export default class WorldTestView extends React.Component {
 
     covidRequest = (iso) => {
         try {
-            const covidUrl = 'http://localhost:8081/covid-testing-service/testing/iso-code/' + iso
+            const covidUrl = 'http://localhost:9000/covid-testing-service/testing/iso-code/' + iso
             console.log(covidUrl)
             return axios.get(covidUrl);
         } catch (err) {
@@ -89,7 +89,7 @@ export default class WorldTestView extends React.Component {
 
     covidTimelineRequest = (iso) => {
         try {
-            const timelineUrl = 'http://localhost:8081/covid-testing-service/testing/timeline/' + iso
+            const timelineUrl = 'http://localhost:9000/covid-testing-service/testing/timeline/' + iso
             console.log(timelineUrl)
             return axios.get(timelineUrl);
         } catch (err) {
