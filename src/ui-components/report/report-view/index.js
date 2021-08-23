@@ -14,7 +14,7 @@ export default class ReportImageView extends Component {
                 <div>
                     <div className={'scan-report-chart'} >
                         <Helmet>
-                            <script src="papaya.js" type="text/javascript" />
+                            <script src="papaya.js" type="text/javascript" crossOrigin ="anonymous" />
                             <link rel="stylesheet" type="text/css" href="papaya.css" />
                         </Helmet>
                         <div className="papaya" data-params="params"></div>

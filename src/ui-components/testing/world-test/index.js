@@ -147,7 +147,7 @@ export default class WorldTestView extends React.Component {
     render() {
         d3.selectAll('.tooltip').remove();
         const tooltip =
-            d3.select(".world-map")
+            d3.select(".world-map-test")
                 .append("div")
                 .attr("class", "hidden tooltip");
 
@@ -179,7 +179,7 @@ export default class WorldTestView extends React.Component {
         return (
             <div className='pane'>
                 <div className='header'>World Map</div>
-                <div className="world-map"> </div>
+                <div className="world-map-test"> </div>
                 <svg width={width} height={height} viewBox="0 0 800 450" className="svg-map-world">
                     <g className="world-test-view">
                         {

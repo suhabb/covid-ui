@@ -5,7 +5,7 @@ import './circular-barplot.css'
 export default class CircularPlotView extends Component {
 
     render() {
-        console.log('Circulat chart Chart', this.props.worldDataProp)
+
         let filterDataset = [];
         let countryList = [];
         this.props.worldDataProp.forEach(item => {
@@ -24,7 +24,6 @@ export default class CircularPlotView extends Component {
         })
 
         filterDataset = filterDataset.sort((a, b) => b.active - a.active).slice(0, 20);
-        console.log(filterDataset)
 
         d3.selectAll('.circular-bar-plot > *').remove();
 

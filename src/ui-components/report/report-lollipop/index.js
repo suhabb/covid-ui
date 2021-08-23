@@ -7,16 +7,12 @@ export default class ReportLollipopChart extends Component {
 
 
     render() {
-        let reportData = this.props.reportData;
-        console.log("Report Chart View", reportData)
         const symptomsData = this.props.reportData;
-        console.log("Symptoms Data",symptomsData)
         const dataset = [];
         if (symptomsData !== undefined) {
             delete symptomsData.total_patients;
             delete symptomsData.symptoms;
             const keys = Object.keys(symptomsData);
-            console.log("Keys",keys);
             keys.forEach((key) => {
                 let data = {
                     'symptom': key,
@@ -24,7 +20,6 @@ export default class ReportLollipopChart extends Component {
                 }
                 dataset.push(data);
             });
-            console.log("Report Lollipop Set",dataset);
         }
 
         // set the dimensions and margins of the graph

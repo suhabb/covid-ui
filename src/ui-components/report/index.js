@@ -10,6 +10,8 @@ import ReportImageView from './report-view'
 import PieReportChart from './pie-report'
 import ReportLollipopChart from './report-lollipop'
 
+import { Helmet } from "react-helmet";
+
 const {Sider, Content } = Layout;
 
 export default class ReportView extends Component {
@@ -33,8 +35,6 @@ export default class ReportView extends Component {
 
 
     render() {
-
-        console.log("Report Data",this.state.reportData)
         return (
             <div>
                 <Layout style={{ height: 920 }}>

@@ -5,7 +5,7 @@ import './linear-bar.css'
 export default class LinearBarChart extends Component {
 
     render() {
-        console.log('Line Chart', this.props.worldDataProp)
+
         let filterDataset = [];
         this.props.worldDataProp.forEach(item => {
             let worldObj = {
@@ -16,7 +16,6 @@ export default class LinearBarChart extends Component {
         })
 
         filterDataset = filterDataset.sort((a, b) => b.cases - a.cases).slice(0, 10);
-        console.log(filterDataset)
         d3.select('.testing-linear-barchart > *').remove();
 
         // set the dimensions and margins of the graph

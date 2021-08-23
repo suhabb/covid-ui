@@ -8,18 +8,13 @@ export default class LollipopChartView extends Component {
     render() {
 
         let covidTimelineData = this.props.timelineData;
-        console.log("Covid Line View", covidTimelineData)
 
         if (covidTimelineData === undefined || (Object.keys(covidTimelineData).length === 0)) {
             covidTimelineData = mockData;
-            console.log("Mock Line Data", covidTimelineData)
         }
-        //  let data = covidTimelineData.timeline.cases.slice(0, 8);
-        // let recovered = covidTimelineData.timeline.recovered;
         let covidDeathList = covidTimelineData.timeline.deaths;
         let dataset = covidDeathList.slice(Math.max(covidDeathList.length - 8, 0));
 
-        console.log("Cases", dataset);
         dataset.forEach(item => {
             item.date = new Date(item.date);
         })

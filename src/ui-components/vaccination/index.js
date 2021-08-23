@@ -9,6 +9,8 @@ import Info from './info'
 import { Layout } from 'antd';
 import './vaccination.css'
 import AreaChartView from './area';
+
+
 const { Sider, Content } = Layout;
 
 export class VaccinationView extends React.Component {

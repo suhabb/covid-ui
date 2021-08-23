@@ -5,15 +5,12 @@ import './report-linear-bar.css'
 export default class ReportLinearBarChart extends Component {
 
     render() {
-        console.log('Report Chart', this.props.reportData)
         const symptomsData = this.props.reportData;
-        console.log("Symptoms Data",symptomsData)
         const dataset = [];
         if (symptomsData !== undefined) {
             delete symptomsData.total_patients;
             delete symptomsData.symptoms;
             const keys = Object.keys(symptomsData);
-            console.log("Keys",keys);
             keys.forEach((key, index) => {
                 let data = {
                     'symptom': key,
@@ -21,7 +18,6 @@ export default class ReportLinearBarChart extends Component {
                 }
                 dataset.push(data);
             });
-            console.log("Report Data Set",dataset);
         }
         d3.select('.report-linear-barchart > *').remove();
 

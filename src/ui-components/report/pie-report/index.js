@@ -6,9 +6,8 @@ import mockData from './report-pie-data'
 export default class PieReportChart extends Component {
 
     render() {
-        console.log('Report Chart', this.props.width)
+
         let data = this.props.reportData;
-        console.log("Pie Chart Data", data)
         if (data !== undefined) {
             delete data.total_patients;
             delete data.symptoms;
