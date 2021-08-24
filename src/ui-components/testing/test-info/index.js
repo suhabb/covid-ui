@@ -11,6 +11,7 @@ export default class TestInfo extends Component {
         if(countryData === undefined || (Object.keys(countryData).length === 0)){
             countryData = data
         }
+        console.log("Testing:",countryData)
     
         return (
             <div id='info-test-view' className='pane'>
@@ -19,11 +20,12 @@ export default class TestInfo extends Component {
                 <div>     
                     <div className={'info-test-view'} >
                         <div><span>Country:</span> {countryData.country}</div>
+                        <div><span>Date:</span> {countryData.updated}</div>
                         <div><span>Cases Per Million:</span> {countryData.casesPerOneMillion}</div>
                         <div><span>Deaths Per Million:</span> {countryData.deathsPerOneMillion}</div>
                         <div><span>Tests Per Million:</span> {countryData.testsPerOneMillion}</div>
-                        <div><span>Recovered Per Million</span> {countryData.recoveredPerOneMillion}</div>
-                        <div><span>Critical Per Million</span> {countryData.criticalPerOneMillion}</div>
+                        <div><span>Recovered Per Million:</span> {countryData.recoveredPerOneMillion}</div>
+                        <div><span>Critical Per Million:</span> {countryData.criticalPerOneMillion}</div>
                     </div>
                 </div>
             </div>
