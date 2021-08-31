@@ -63,7 +63,7 @@ export default class ReportLollipopChart extends Component {
             .attr('dy', '2em')
             .style('text-anchor', 'middle')
             .style('fill', '#141414')
-            .text('Symptoms');
+            .text('Patients');
 
         // Lines
         svg.selectAll("myline")
