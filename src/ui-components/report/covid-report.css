@@ -1,3 +1,9 @@
+.site-layout-content {
+    min-height: 380px;
+    padding: 24px;
+    background: #fff;
+}
+
 .header-pane{
     background-color: lightslategray;
 
