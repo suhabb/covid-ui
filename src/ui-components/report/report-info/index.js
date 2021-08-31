@@ -10,7 +10,7 @@ export default class ReportInfo extends Component {
     
         return (
             <div id='info-report-chart' className='pane'>
-                <div className='header'>Symptoms<span></span></div>
+                <div className='header'>Symptoms:Info View<span></span></div>
                 <div>     
                     <div className={'info-report-view'} >
                         <div><span>Total Patients:</span> {reportData.total_patients}</div>

@@ -92,7 +92,7 @@ export default class ReportLollipopChart extends Component {
 
         return (
             <div id='report-lollipop-view' className='pane'>
-                <div className='header'>Symptoms</div>
+                <div className='header'>Symptoms: Lollipop Chart</div>
                 <div className='lollipop-report-chart' ></div>
             </div>
         )
