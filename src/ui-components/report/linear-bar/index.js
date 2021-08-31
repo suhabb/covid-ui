@@ -6,7 +6,7 @@ export default class ReportLinearBarChart extends Component {
 
     render() {
         const symptomsData = this.props.reportData;
-        const dataset = [];
+        let dataset = [];
         if (symptomsData !== undefined) {
             delete symptomsData.total_patients;
             delete symptomsData.symptoms;
@@ -19,6 +19,7 @@ export default class ReportLinearBarChart extends Component {
                 dataset.push(data);
             });
         }
+        dataset = dataset.sort((a, b) => b.count - a.count).slice(0, 10);
         d3.select('.report-linear-barchart > *').remove();
 
         // set the dimensions and margins of the graph

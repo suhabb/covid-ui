@@ -1,3 +1,9 @@
 #scan-report-view{
     height: 920px;
+    width: 1300px
+    
 } 
+
+.scan-report-chart{
+    width: 100%
+}

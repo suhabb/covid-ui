@@ -4,13 +4,10 @@ import React, { Component } from 'react'
 import FooterView from '../../footer'
 import { Layout } from 'antd';
 import './covid-report.css'
-import ReportLinearBarChart from './linear-bar';
 import ReportInfo from './report-info'
 import ReportImageView from './report-view'
-import PieReportChart from './pie-report'
-import ReportLollipopChart from './report-lollipop'
+import ReportLinearBarChart from './linear-bar'
 
-import { Helmet } from "react-helmet";
 
 const {Sider, Content } = Layout;
 
@@ -38,26 +35,18 @@ export default class ReportView extends Component {
         return (
             <div>
                 <Layout style={{ height: 920 }}>
-                    <Sider width={300} style={{ backgroundColor: '#eee' }}>
-                        <Content style={{ height: 400 }}>
+                    <Sider width={580} style={{ backgroundColor: '#eee' }}>
+                        <Content style={{ height: 250 }}>
                             <ReportInfo reportData={this.state.reportData} />
                         </Content>
-                        <Content style={{ height: 320 }}>
-                            <ReportLollipopChart reportData={this.state.reportData} width={300} height={490}/>
+                        <Content style={{ height: 650 }}>
+                            <ReportLinearBarChart reportData={this.state.reportData} width={580} height={650}/>
                         </Content>
                     </Sider>
                     <Layout>
-                        <Content style={{ height: 920 }}>
-                            <ReportImageView width={450} height={850} />
+                        <Content style={{ height: 920 , width:900 }}>
+                            <ReportImageView />
                         </Content>
-                        <Sider width={600} style={{ backgroundColor: '#eee' }}>
-                            <Content style={{ height: 400 }}>
-                                <ReportLinearBarChart  reportData={this.state.reportData} width={560} height={440} />
-                            </Content>
-                            <Content style={{ height: 320 }}>
-                                <PieReportChart reportData={this.state.reportData} width={450} height={430} />
-                            </Content>
-                        </Sider>
                     </Layout>
                 </Layout>
                 <Layout>
