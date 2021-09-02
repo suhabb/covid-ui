@@ -60,7 +60,7 @@ export class TestingView extends React.Component {
                     <Layout>
                         <Content style={{ height: 600 }}>
                             <WorldTestView parentCallback={this.callbackFunction} width={800} height={350} />
-                            <DonutChartView covidTestingData={this.state.covidTestingData} width={450} height={450} />
+                            <DonutChartView covidTestingData={this.state.covidTestingData} width={850} height={450} />
                         </Content>
                         <Sider width={600} style={{ backgroundColor: '#eee' }}>
                             <Content style={{ height: 400 }}>

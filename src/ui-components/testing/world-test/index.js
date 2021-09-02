@@ -1,6 +1,6 @@
 
 import React from "react"
-import { geoEqualEarth, geoPath } from "d3-geo"
+import { geoNaturalEarth1, geoPath } from "d3-geo"
 import axios from 'axios'
 import * as d3 from 'd3'
 import './world-test.css'
@@ -9,7 +9,7 @@ import { feature } from "topojson-client"
 import mockData from '../../../data/bar-test'
 import mockLineData from '../../../data/line-test'
 
-const projection = geoEqualEarth()
+const projection = geoNaturalEarth1()
     .scale(160)
     .translate([800 / 2, 450 / 2])
 
@@ -154,23 +154,12 @@ export default class WorldTestView extends React.Component {
         const width = this.props.width;
         const height = this.props.height;
 
-        const zoomWorld =
-            d3.zoom()
-                .scaleExtent([-15, 30])
-                .translateExtent([
-                    [0, 0],
-                    [width, height]
-                ])
-                .on("zoom", function (event) {
-                    d3.select("g").attr("transform", event.transform);
-                });
 
         const svg =
             d3.select(".svg-map-world")
                 .attr("width", width)
                 .attr("height", height)
                 .attr("preserveAspectRatio", "xMinYMin meet")
-                .attr("viewBox", `0 0 800 450`)
                 .call(d3.zoom().on("zoom", function (event) {
                     svg.attr("transform", event.transform)
                  }));
@@ -180,7 +169,7 @@ export default class WorldTestView extends React.Component {
             <div className='pane'>
                 <div className='header'>World Map</div>
                 <div className="world-map-test"> </div>
-                <svg width={width} height={height} viewBox="0 0 800 450" className="svg-map-world">
+                <svg width={width} height={height} viewBox="-100 20 800 450" className="svg-map-world">
                     <g className="world-test-view">
                         {
                             this.state.geographies.map((d, i) => (

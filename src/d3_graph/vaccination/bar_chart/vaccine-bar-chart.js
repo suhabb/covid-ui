@@ -63,7 +63,7 @@ var tooltip = d3.select("body").append("div")
         });;
 
     svg.append('g')
-        .attr('transform', `translate(0, ${graphHeight})`)
+        .attr('transform', `translate(0, ${graphHeight})`) //shift x-axis to the bottom
         .call(d3.axisBottom(x));
 
     svg.append('g')

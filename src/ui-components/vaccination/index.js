@@ -2,13 +2,13 @@ import React from 'react'
 
 import WorldView from './world'
 import PieView from './pie';
-import TabularView from './tabular'
 import BarChartView from './bar';
 import FooterView from '../../footer'
 import Info from './info'
 import { Layout } from 'antd';
 import './vaccination.css'
 import AreaChartView from './area';
+import TreeMapView from './treemap'
 
 
 const { Sider, Content } = Layout;
@@ -50,7 +50,7 @@ export class VaccinationView extends React.Component {
                                 <AreaChartView countryData={this.state.vaccine} width={1000} height={750} />
                             </Content>
                             <Content style={{ height: 350 }}>
-                                <TabularView countryData={this.state.vaccine}/>
+                                <TreeMapView manufacturerData={this.state.manufacturer} width={500} height={480}/>
                             </Content>
                         </Sider>
                     </Layout>

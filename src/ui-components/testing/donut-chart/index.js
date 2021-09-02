@@ -6,8 +6,6 @@ import mockData from '../../../data/bar-test'
 export default class DonutChartView extends Component {
 
     render() {
-
-
         let covidTestingData = this.props.covidTestingData;
         if (covidTestingData === undefined || (Object.keys(covidTestingData).length === 0)) {
             covidTestingData = mockData;
@@ -18,16 +16,14 @@ export default class DonutChartView extends Component {
             'recovered': covidTestingData.recovered,
             'active': covidTestingData.active
         };
-        // set the dimensions and margins of the graph
-        const width = 850,
-        height = 450,
+    
+        const width = this.props.width,
+        height = this.props.height,
         margin = 30
         
-
-        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
         const radius = Math.min(width, height) / 2 - margin
-         d3.select('.donut-test-chart > *').remove();
-        // append the svg object to the div called 'my_dataviz'
+        d3.select('.donut-test-chart > *').remove();
+
         const svg = d3.select(".donut-test-chart")
             .append("svg")
             .attr("width", width)
@@ -35,31 +31,30 @@ export default class DonutChartView extends Component {
             .append("g")
             .attr("transform", `translate(${width / 2},${height / 2})`);
 
-        // set the color scale
+      
         const color = d3.scaleOrdinal()
             .domain(Object.keys(data))
             .range(d3.schemeDark2);
 
-        // Compute the position of each group on the pie:
+      
         const pie = d3.pie()
-            .sort(null) // Do not sort group by size
+            .sort(null) 
             .value(d => d[1])
-        const data_ready = pie(Object.entries(data))
+        const dataset = pie(Object.entries(data))
 
-        // The arc generator
+
         const arc = d3.arc()
-            .innerRadius(radius * 0.5)         // This is the size of the donut hole
+            .innerRadius(radius * 0.5)        
             .outerRadius(radius * 0.8)
 
-        // Another arc that won't be drawn. Just for labels positioning
+        // this arc for labels
         const outerArc = d3.arc()
             .innerRadius(radius * 0.9)
             .outerRadius(radius * 0.9)
 
-        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
         svg
             .selectAll('allSlices')
-            .data(data_ready)
+            .data(dataset)
             .join('path')
             .attr('d', arc)
             .attr('fill', d => color(d.data[1]))
@@ -67,27 +62,26 @@ export default class DonutChartView extends Component {
             .style("stroke-width", "2px")
             .style("opacity", 0.7)
 
-        // Add the polylines between chart and labels:
+        // Add the lines
         svg
             .selectAll('allPolylines')
-            .data(data_ready)
+            .data(dataset)
             .join('polyline')
             .attr("stroke", "black")
             .style("fill", "none")
             .attr("stroke-width", 1)
             .attr('points', function (d) {
-                const posA = arc.centroid(d) // line insertion in the slice
-                const posB = outerArc.centroid(d) // line break: we use the other arc generator that has been built only for that
-                const posC = outerArc.centroid(d); // Label position = almost the same as posB
-                const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
-                posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
+                const posA = arc.centroid(d) 
+                const posB = outerArc.centroid(d) 
+                const posC = outerArc.centroid(d); 
+                const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 
+                posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1); 
                 return [posA, posB, posC]
             })
 
-        // Add the polylines between chart and labels:
         svg
             .selectAll('allLabels')
-            .data(data_ready)
+            .data(dataset)
             .join('text')
             .text(d => d.data[0])
             .attr('transform', function (d) {
@@ -100,8 +94,6 @@ export default class DonutChartView extends Component {
                 const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
                 return (midangle < Math.PI ? 'start' : 'end')
             })
-
-
 
         return (
             <div id='donut-chart-view' className='pane' >

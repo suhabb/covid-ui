@@ -1,12 +1,12 @@
 import React from "react"
-import { geoEqualEarth, geoPath } from "d3-geo"
+import { geoEqualEarth, geoEquirectangular,geoPath } from "d3-geo"
 import axios from 'axios'
 import { tsv, select, selectAll } from "d3"
 import './world-view.css'
 import tsvData from './110m.tsv'
 import { feature } from "topojson-client"
 
-const projection = geoEqualEarth()
+const projection = geoEquirectangular()
     .scale(160)
     .translate([800 / 2, 450 / 2])
 

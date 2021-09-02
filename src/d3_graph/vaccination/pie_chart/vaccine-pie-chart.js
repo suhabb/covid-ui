@@ -53,7 +53,8 @@ const PieView = (props) => {
         .attr('fill', function (d, i) {
             return color(i);
         })
-        .transition().duration(800)
+        .transition()
+        .duration(800)
         .attrTween('d', arcMoveEnter);
 
     var size = 20

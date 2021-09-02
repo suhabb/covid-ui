@@ -25,14 +25,14 @@ export default class CircularPlotView extends Component {
 
         filterDataset = filterDataset.sort((a, b) => b.active - a.active).slice(0, 20);
 
-        d3.selectAll('.circular-bar-plot > *').remove();
+        d3.selectAll('.circular-bubble-plot > *').remove();
 
         // set the dimensions and margins of the graph
         const margin = { top: 70, right: 70, bottom: 50, left: 80 },
             width = this.props.width - margin.left - margin.right,
             height = this.props.height - margin.top - margin.bottom;
 
-        const svg = d3.select(".circular-bar-plot")
+        const svg = d3.select(".circular-bubble-plot")
             .append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -81,7 +81,7 @@ export default class CircularPlotView extends Component {
             .range(d3.schemeSet2);
 
 
-        const tooltip = d3.select(".circular-bar-plot")
+        const tooltip = d3.select(".circular-bubble-plot")
             .append("div")
             .style("opacity", 0)
             .attr("class", "tooltip-plot");
@@ -130,7 +130,7 @@ export default class CircularPlotView extends Component {
             <div id='circular-plot-view' className='pane' >
                 <div className='header'>Bubble View : Recovered Cases</div>
                 <div>
-                    <div className='circular-bar-plot' />
+                    <div className='circular-bubble-plot' />
                 </div>
             </div>
         )

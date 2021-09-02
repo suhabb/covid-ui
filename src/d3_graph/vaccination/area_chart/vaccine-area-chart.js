@@ -74,7 +74,7 @@ const AreaView = (props) => {
         .style('fill', '#141414')
         .text('Daily Vaccinations');
 
-    // Add the line
+    // Add the curve
     let curve = d3.curveLinear;
 
     svg.append('path')

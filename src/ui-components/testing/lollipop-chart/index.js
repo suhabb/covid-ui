@@ -74,18 +74,21 @@ export default class LollipopChartView extends Component {
             .data(dataset)
             .enter()
             .append("line")
+            .transition()
+            .duration(200)
             .attr("x1", function (d) { return x(d.date); })
             .attr("x2", function (d) { return x(d.date); })
             .attr("y1", function (d) { return y(d.value); })
             .attr("y2", y(0))
-            .attr("stroke", "grey")
-            .transition()
-            .duration(2000)
+            .attr("stroke", "grey");
+      
 
         // Circles
         svg.selectAll("mycircle")
             .data(dataset)
             .join("circle")
+            .transition()
+            .duration(200)
             .attr("cx", function (d) { return x(d.date); })
             .attr("cy", function (d) { return y(d.value); })
             .attr("r", "4")
