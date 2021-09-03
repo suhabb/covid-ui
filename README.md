@@ -14,6 +14,10 @@ Ui is composed of three tabs:
 
 In the project directory, you can run:
 
+### `npm install`
+
+First install the node dependencies then 'npm start'
+
 ### `npm start`
 
 Runs the app in the development mode.\
