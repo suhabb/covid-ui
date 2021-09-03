@@ -63,7 +63,7 @@ const PieView = (props) => {
         .enter()
         .append("rect")
         .attr("x", -120)
-        .attr("y", function (d, i) { return 130 + i * (size + 5) }) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("y", function (d, i) { return 130 + i * (size + 5) }) 
         .attr("width", size)
         .attr("height", size)
         .style("fill", (d, i) => {
@@ -75,7 +75,7 @@ const PieView = (props) => {
         .enter()
         .append("text")
         .attr("x", -120 + size * 1.2)
-        .attr("y", function (d, i) { return 133 + i * (size + 5) + (size / 2) }) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("y", function (d, i) { return 133 + i * (size + 5) + (size / 2) }) 
         .style("fill", '#ff')
         .text(function (d) { return d.data.vaccine })
         .attr("text-anchor", "right")
