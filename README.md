@@ -90,7 +90,7 @@ Martinez, M. (2016). Papaya. Retrieved from GitHub: https://github.com/rii-mango
 Holtz, Y. (2018). D3 gallery. Retrieved from D3gallery: https://www.d3-graph-gallery.com/graph/treemap_basic.html
 
 <a id="7">[7]</a> 
-Holtz, Y. (2018). Bubble Plot,Do-Nut,Pie,Bar. Retrieved from https://datavizproject.com
+Holtz, Y. (2018). Bubble Plot,Do-Nut,Pie,Bar. Retrieved fromhttps://www.d3-graph-gallery.com
 
 <a id="8">[8]</a> 
 Cook, P. (2021). scales. Retrieved from d3indepth: https://www.d3indepth.com/scales
