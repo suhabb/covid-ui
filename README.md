@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Getting Started with Covid UI
 
-This Covid ui is compsed of three tabs:
+This Covid ui is composed of three tabs:
   - Vaccination
   - Testing
   - Report
