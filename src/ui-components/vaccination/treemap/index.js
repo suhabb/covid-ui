@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './treemap-vaccine.css';
 import * as d3 from 'd3'
 import mockData from './treemap-data'
-import data from './treemap-data';
+
 
 export default class TreeMapView extends Component {
 
