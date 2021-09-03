@@ -3,12 +3,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Getting Started with Covid UI
+Covid UI is built using React Js, D3.js and Ant UI Components. Each microservice has its corresponding screen ui tab as Vaccination, Testing and Report. In our project, I have developed covid-ui with the combination of React js for handling data of the microservice’s and D3.js library for data visualization.
 
-This Covid ui is composed of three tabs:
+Ui is composed of three tabs:
   - Vaccination
   - Testing
   - Report
-
 
 ## Available Scripts
 
